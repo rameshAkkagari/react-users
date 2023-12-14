@@ -38,7 +38,7 @@ const statesByCountry = {
     const handleCountryChange = (event) => {
             const selectedCountry = event.target.value;
             setCountry(selectedCountry);
-            setIsCountryValid(countries.includes(selectedCountry));
+            // setIsCountryValid(countries.includes(selectedCountry));
             // Reset state when country changes
             setState('');
         };
