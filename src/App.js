@@ -1,9 +1,13 @@
 import React from 'react'
-import AlluserDetails from './Components/AlluserDetails'
+import CreateUser from './Components/CreateUser'
+import DisplayAllusers from './Components/DisplayAllusers'
+// import AlluserDetails from './Components/AlluserDetails'
 function App() {
   return (
     <div>
-        <AlluserDetails/>  
+        {/* <AlluserDetails/>   */}
+        <CreateUser/>
+        <DisplayAllusers/>
     </div>
   )
 }
