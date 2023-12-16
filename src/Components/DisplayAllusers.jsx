@@ -14,6 +14,7 @@ function DisplayAllusers() {
 
     const Edituser = (each) => {
         console.log(each.id);
+        console.log(each);
     
         dispatch(DetailsActions.edituser({
              id: each.id,
@@ -23,30 +24,31 @@ function DisplayAllusers() {
              mobile: each.mobile,
              address1: each.address1,
              address2: each.address2,
-             countrys:each.countrys,
-             states:each.states,
+             country:each.countrys,
+             state:each.states,
              zipcode:each.zipcode
         }));
     };
 
   return (
+    <>
     <Stack spacing={2} width={400} margin={2}>
         <ul>
             {
                 allusers.map((each,i)=>{
                     console.log(each);
-                    const {id,firstname,lastname,email,mobile,address1,address2,countrys,states} = each
+                    const {id,firstname,lastname,email,mobile,address1,address2,countrys,states,zipcode} = each
                     return (
                         <li key={i}>
-                            <p>{id}</p>
                             <h3>{firstname}</h3>
                             <h3>{lastname}</h3>
                             <h3>{email}</h3>
                             <h3>{mobile}</h3>
-                            <h4>{countrys}</h4>
-                            <h5>{states}</h5>
                             <h3>{address1}</h3>
                             <h3>{address2}</h3>
+                            <h3>{countrys}</h3>
+                            <h4>{states}</h4>
+                            <p>{zipcode}</p>
                             <Button variant='contained' onClick={(e)=>deleteuser(id)}>Delete</Button>
                             <Button variant='outlined' onClick={(e)=>Edituser(each)}>Edit</Button>
                         </li>
@@ -55,6 +57,8 @@ function DisplayAllusers() {
             }
         </ul>
     </Stack>
+    
+    </>
   )
 }
 

@@ -63,6 +63,7 @@ const Details = createSlice({
         },
 
         adduser(state,action){
+            
             state.users.push(action.payload);
             // Reset the form and values
             state.firstName = "";
@@ -84,9 +85,10 @@ const Details = createSlice({
         },
 
         edituser(state,action){
+            console.log(state);
              state.id = action.payload.id;
              state.isEdit.status = true;
-             state.isEdit.id = action.payload.id
+             state.isEdit.id = action.payload.id;
              state.firstName = action.payload.firstName;
              state.lastname = action.payload.lastname;
              state.email = action.payload.email;
@@ -109,8 +111,8 @@ const Details = createSlice({
                         mobile:state.mobile,
                         address1:state.address1,
                         address2:state.address2,
-                        country:state.country,
-                        state:state.state,
+                        country: state.country, 
+                        state: state.state,
                         zipcode:state.zipcode
                     }
                 }
@@ -129,8 +131,8 @@ const Details = createSlice({
             state.mobile = "";
             state.address1 = "";
             state.address2 = "";
-            // state.country = "";
-            // state.state  = "";
+            state.country = "";
+            state.state  = "";
             state.zipcode = ""
             state.id = "";
 

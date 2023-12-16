@@ -1,7 +1,9 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField } from '@mui/material'
+import { Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useSelector,useDispatch } from 'react-redux';
 import { DetailsActions } from '../store/Details';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreateUser() {
 
@@ -36,11 +38,39 @@ function CreateUser() {
         const selectedState = event.target.value;
         dispatch(DetailsActions.seleteState(selectedState));
       };
+
+         // Function to validate email using a regular expression
+         const isValidEmail = (email) => {
+            // Regular expression for a simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
     
 
     const submituser  =(e) =>{
         e.preventDefault();
+                if(!firstname || firstname.length < 5 ){
+                        return toast.error("Firstname must be minimum 5 char",{position:toast.POSITION.TOP_CENTER,theme:"colored"})
+                }
 
+                if(!lastname ||lastname.length < 5){
+                        return toast.error("lastName must be minimum 5 char",{position:toast.POSITION.TOP_CENTER,theme:"colored"})
+                }
+                    
+                if(!isValidEmail(email)) {
+                    return toast.error("Please enter a valid email address.",{position:toast.POSITION.TOP_CENTER,theme:"colored"})
+                    
+                }
+            
+                if(address1.length < 10){
+                    return toast.error("Please enter your stress name and House no",{position:toast.POSITION.TOP_CENTER,theme:"colored"})
+                }
+            
+                if (zipcode.length !== 6 ){
+                    return toast.info("Please enter a valid 6-digit zip code", { position: toast.POSITION.TOP_CENTER });
+                }
+
+             
         const newUser = {
             id:new Date().getTime().toString(),
             firstname:firstname,
@@ -66,6 +96,7 @@ function CreateUser() {
     <>
     <form>
         <Stack padding={15}width={500} spacing={2}>
+    <Typography variant='h4'>Create user</Typography>
             <TextField
                 label="First Name"
                 autoComplete='off'
@@ -144,6 +175,7 @@ function CreateUser() {
         
 
         </Stack>
+        <ToastContainer></ToastContainer>
     </form>
     </>
   )
